@@ -1,4 +1,4 @@
-<html>
+{{-- <html>
 <head>
     <title>NextBridge Ltd</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,4 +113,4 @@ padding: 6px;
         </form>
     </main>
 </section>
-</body>
+</body> --}}
