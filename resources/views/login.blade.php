@@ -31,9 +31,9 @@
         <div class="card-body login-card-body">
 
             <form action="/login" method="post" id="basic-form" novalidate="novalidate">
-                <input type="hidden" name="_token" value="3mQcbdOwmlJQUcm0hwS7U5dKOT3NhwaVKSHdvHng">
+                @csrf
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control error" minlength="3" placeholder="Email" name="email" aria-invalid="true">
+                    <input type="email" class="form-control error" minlength="3" placeholder="Email" name="email" aria-invalid="true" required>
 
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -45,7 +45,7 @@
 {{--                <label href="results mt-3"></label>--}}
 
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control valid" minlength="6" placeholder="Password" name="password">
+                    <input type="password" class="form-control valid" minlength="6" placeholder="Password" name="password" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

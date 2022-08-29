@@ -14,7 +14,6 @@ class RegisterController extends Controller
             'name'=>'required',
             'email'=>'required',
              'user_id'=>'required',
-'user_type'=>'required',
 //            'email_verified_at'=>'time()',
             'password'=>'min:6|required'
         ]);
@@ -38,19 +37,24 @@ class RegisterController extends Controller
     }
     public function loginuser(Request $request){
 
-        $users=User::where('email','=',$request->email)->first();
-        if($users) {
-            if ($users->email_verified_at != null) {
+     $users=User::where('email','=',$request->email)->first();
+
+        if($users){
+            if ($users->email_verified_at!=null) {
                 if (Hash::check($request->password, $users->password)) {
                     $request->session()->put('loginid', $users->id);
                     return redirect('/dashboard');
                 } else {
-                    return back()->with('fail', 'Password not matched');
+                    echo "Incorrect Password";
                 }
+            }
+            else
+            {
+                echo "User Not Verified";
             }
         }
         else{
-            return back()->with('fail','Email not matched');
+            echo "Incorrect Email";
         }
 
 
