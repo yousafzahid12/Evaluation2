@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Recover Password</title>
+    <title>AdminLTE 3 | Forgot Password</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,40 +21,42 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
+        <img src="https://nextbridge.com/wp-content/uploads/2022/02/Group-187.svg">
     </div>
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
+            <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
 
-            <form action="login.html" method="post">
+            <form action="{{route('password.email')}}" method="post" id="forget-password">
+                @csrf
+                @if(session('status')){
+            <p>{{session('status')}}</p>
+            }@elseif(session('email')){
+                    <p>{{session('email')}}</p>
+                    }
+                @endif
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="email" class="form-control" placeholder="Email" name="email">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Confirm Password">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
+                            <span class="fas fa-envelope"></span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Change password</button>
+                        <button type="submit" class="btn btn-primary btn-block">Request new password</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
 
             <p class="mt-3 mb-1">
-                <a href="login.html">Login</a>
+                <a href="/login">Login</a>
+            </p>
+            <p class="mb-0">
+                <a href="register.html" class="text-center">Register a new membership</a>
             </p>
         </div>
         <!-- /.login-card-body -->
@@ -63,7 +65,7 @@
 <!-- /.login-box -->
 
 <!-- jQuery -->
-<script src="/assets/plugins/jquery/jquery.min.js"></script>
+<script src="../assetsplugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
