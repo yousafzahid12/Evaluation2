@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Password;
 
 class RegisterController extends Controller
 {
@@ -50,7 +51,7 @@ class RegisterController extends Controller
             }
             else
             {
-                echo "User Not Verified";
+               echo "User Not Verified";
             }
         }
         else{
@@ -59,6 +60,34 @@ class RegisterController extends Controller
 
 
     }
+    /////Forget Password
+    public function recover(Request $request){
+        $users=User::where('email','=',$request->email)->first();
+        if ($users)
+        {
+            $request->session()->put('loginemail', $users->email);
+            return redirect('pass_change');
+
+        }else
+        {
+            return redirect('/forget');
+        }
+    }
+
+    /////// new Password ///////////////
+//    public function new_password(Request $request)
+//    {
+//        $users = array();
+//        if (Session::has('loginemail')) {
+//            $users = User::where('email', '=', Session::get('loginemail'))->first();
+//            if ($users) {
+//                dd($users);
+//            } else {
+//                return redirect('/forget');
+//            }
+//        }
+//    }
+    ////////////////
 
     public function profile(){
         $users=array();
@@ -75,3 +104,8 @@ public function logout(){
         return redirect('/login');
 }
 }
+
+
+
+
+

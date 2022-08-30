@@ -31,7 +31,19 @@
         <div class="card-body login-card-body">
 
             <form action="/login" method="post" id="basic-form" class="basic-form" novalidate="novalidate">
+                @csrf
+                @if(session('failed'))
+                    <p class="status">{{session('failed')}}</p>
+                @elseif(session('status'))
+                    <p>{{session('status')}}</p>
+
+                @endif
+
+
+
+
                 <input type="hidden" name="_token" value="dzARZeW3L0HHF7rV5e21qAw7jxLVUEh1I083I4ap">
+
 
                 <div class="input-group mb-3">
                     <input type="email" class="form-control" minlength="3" placeholder="Email" name="email" aria-invalid="true" required="">
@@ -80,7 +92,7 @@
 
 
             <p class="mt-2">
-                <a href="/forget-password">I forgot my password</a>
+                <a href="{{route('password.request')}}">I forgot my password</a>
             </p>
             <p class="mb-0">
                 <a href="/" class="text-center">Register a new membership</a>
