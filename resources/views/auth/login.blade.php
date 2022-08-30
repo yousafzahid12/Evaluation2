@@ -33,7 +33,7 @@
             <form action="/login" method="post" id="basic-form" class="basic-form" >
                 @csrf
 
-                <input type="hidden" name="_token" value="dzARZeW3L0HHF7rV5e21qAw7jxLVUEh1I083I4ap">
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
 
 
                 <div class="input-group mb-3">

@@ -34,7 +34,6 @@ class RegisterController extends Controller
             return back()->with('fail','Something went wrong');
         }
         return redirect('/login');
-
     }
     public function loginuser(Request $request){
 
