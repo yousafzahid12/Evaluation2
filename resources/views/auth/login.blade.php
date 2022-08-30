@@ -30,17 +30,8 @@
     <div class="card">
         <div class="card-body login-card-body">
 
-            <form action="/login" method="post" id="basic-form" class="basic-form" novalidate="novalidate">
+            <form action="/login" method="post" id="basic-form" class="basic-form" >
                 @csrf
-                @if(session('failed'))
-                    <p class="status">{{session('failed')}}</p>
-                @elseif(session('status'))
-                    <p>{{session('status')}}</p>
-
-                @endif
-
-
-
 
                 <input type="hidden" name="_token" value="dzARZeW3L0HHF7rV5e21qAw7jxLVUEh1I083I4ap">
 
