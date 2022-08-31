@@ -29,6 +29,11 @@
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{session('success')}}
+                </div>
+            @endif
 
             <form action="/login" method="post" id="basic-form" class="basic-form" >
                 @csrf

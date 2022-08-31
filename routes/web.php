@@ -119,6 +119,6 @@ Route::get('/dashboard',[\App\Http\Controllers\RegisterController::class,'profil
 /////Logout//////
 Route::get('/logout', [\App\Http\Controllers\RegisterController::class,'logout']);
 
-////////////////////////////
+
 Route::get('/relation',[RegisterController::class,'index']);
 ////////////////////////////

@@ -63,7 +63,7 @@ class RegisterController extends Controller
             if ($users->email_verified_at!=null) {
                 if (Hash::check($request->password, $users->password)) {
                     $request->session()->put('loginid', $users->id);
-                    return redirect('/dashboard');
+                    return redirect('/dashboard')->with('success', 'Login Successfully!');
                 } else {
                     echo "Incorrect Password";
                 }
@@ -120,7 +120,7 @@ public function logout(){
         if (Session::has('loginid')){
             Session::pull('loginid');
         }
-        return redirect('/login');
+   return redirect('/login')->with('success', 'Logout Successfully!');
 }
 }
 
