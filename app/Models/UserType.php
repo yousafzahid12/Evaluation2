@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 use Illuminate\Foundation\Auth\UserType as Authenticatable;
 
 class UserType extends Model
@@ -17,6 +18,6 @@ class UserType extends Model
         'type',
     ];
     public function users(){
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class,'user_id');
     }
 }

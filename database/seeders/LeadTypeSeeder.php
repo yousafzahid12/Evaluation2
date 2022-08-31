@@ -20,7 +20,8 @@ class LeadTypeSeeder extends Seeder
         DB::table('lead_type')->delete();
 
         $leads = [
-            [ 'name' => 'Imran Yousaf']
+            [ 'name' => 'NextBridge'],
+            [ 'name' => 'Vteams'],
         ];
 
         foreach ($leads as $lead)

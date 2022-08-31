@@ -88,6 +88,7 @@ Route::post('/reset-password', function (Request $request) {
             event(new PasswordReset($user));
         }
     );
+    return redirect('/login');
 
 
 
@@ -118,6 +119,6 @@ Route::get('/dashboard',[\App\Http\Controllers\RegisterController::class,'profil
 /////Logout//////
 Route::get('/logout', [\App\Http\Controllers\RegisterController::class,'logout']);
 
-
-
-
+////////////////////////////
+Route::get('/relation',[RegisterController::class,'index']);
+////////////////////////////

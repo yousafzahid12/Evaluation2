@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\LeadType;
+use App\Models\ShareAccess;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ShareAccess extends Seeder
+class ShareAccessSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,15 +16,17 @@ class ShareAccess extends Seeder
      */
     public function run()
     {
-        DB::table('lead_type')->delete();
+        DB::table('share_access')->delete();
 
-        $leads = [
-            [ 'name' => 'NextBridge'],
-            [ 'name' => 'Vteams'],
+        $access = [
+                ['action'=>'full_access'],
+                ['action'=>'read_only'],
+                ['action'=>'Update'],
+                ['action'=>'Delete'],
         ];
 
-        foreach ($leads as $lead)
-            LeadType::create($lead);
+        foreach ($access as $access)
+            ShareAccess::create($access);
     }
-    }
+
 }

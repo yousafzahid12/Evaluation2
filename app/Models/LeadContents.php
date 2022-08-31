@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class LeadContents extends Model
 {
     use HasFactory;
+    public function leads()
+    {
+        return $this->belongsTo(Lead::class, 'id');
+    }
 }

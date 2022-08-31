@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use App\Models\UserType;
 use Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable implements MustVerifyEmail,\Illuminate\Contracts\Auth\CanResetPassword
@@ -49,6 +50,6 @@ class User extends Authenticatable implements MustVerifyEmail,\Illuminate\Contra
         'email_verified_at' => 'datetime',
     ];
     public function usertypes(){
-        return $this->hasMany(UserType::class);
+        return $this->belongsTo(UserType::class,'users_type_id');
     }
 }

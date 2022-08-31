@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('leads', function (Blueprint $table) {
+        Schema::create('share_access', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('lead_type');
-            $table->foreign('lead_type')->references('id')->on('lead_type');
-            $table->string('name');
-            $table->unsignedBigInteger('created_by');
-            $table->foreign('created_by')->references('id')->on('users');
-            $table->time('deleted_at');
+            $table->unsignedBigInteger('lead_share_id');
+            $table->foreign('lead_share_id')->references('id')->on('lead_share');
+            $table->enum('action', ['full_access','read_only', 'update', 'delete','can_share'])->default('read_only');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leads');
+        Schema::dropIfExists('share_access');
     }
 };

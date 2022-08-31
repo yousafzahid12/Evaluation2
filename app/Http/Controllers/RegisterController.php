@@ -1,7 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Lead;
+use App\Models\LeadContents;
+use App\Models\LeadShare;
+use App\Models\LeadType;
+use App\Models\ShareAccess;
 use App\Models\User;
+use App\Models\UserType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -9,6 +15,20 @@ use Illuminate\Support\Facades\Password;
 
 class RegisterController extends Controller
 {
+
+    public function index(){
+
+
+        return UserType::find(2)->users;
+
+
+
+
+    }
+
+
+
+    /////////////////////////////////
     public function registration(Request $request){
 
         $request->validate([
