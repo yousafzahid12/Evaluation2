@@ -75,7 +75,6 @@ class RegisterController extends Controller
         return redirect('/login');
     }
     public function loginuser(Request $request){
-        $leads=Lead::all();
 
      $users=User::where('email','=',$request->email)->first();
 
@@ -83,9 +82,7 @@ class RegisterController extends Controller
             if ($users->email_verified_at!=null) {
                 if (Hash::check($request->password, $users->password)) {
                     $request->session()->put('loginid', $users->id);
-                    return view('/dashboard',[
-                        'leads'=>$leads
-                    ]);
+                    return redirect('/dashboard');
                 } else {
                     return redirect('/login')->with('passfail','Incorrect Password');
                 }
@@ -117,11 +114,14 @@ class RegisterController extends Controller
 
 
     public function profile(){
-        $users=array();
-        if (Session::has('loginid')){
-            $users=User::where('id','=',Session::get('loginid'))->first();
-        }
-        return view('dashboard',compact('users'));
+//        $users=array();
+//        if (Session::has('loginid')){
+//            $users=User::where('id','=',Session::get('loginid'))->first();
+//        }
+        $leads=Lead::all();
+        return view('dashboard',[
+            'leads'=>$leads
+        ]);
     }
 
 public function logout(){

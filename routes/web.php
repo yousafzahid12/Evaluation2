@@ -120,9 +120,11 @@ Route::get('/recover', function () {
 
 
 /////////DashBoard///////////////
-Route::get('/dashboard',[\App\Http\Controllers\RegisterController::class,'profile'] )->middleware('authmember');
+Route::get('/dashboard',[\App\Http\Controllers\RegisterController::class,'profile'] )->middleware('authmember');;
 
-
+//////////////////////////////
+//
+///////////////////
 /////Logout//////
 Route::get('/logout', [\App\Http\Controllers\RegisterController::class,'logout']);
 
