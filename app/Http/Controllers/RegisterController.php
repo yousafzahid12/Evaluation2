@@ -9,6 +9,7 @@ use App\Models\ShareAccess;
 use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Password;
@@ -16,15 +17,33 @@ use Illuminate\Support\Facades\Password;
 class RegisterController extends Controller
 {
 
-//    public function index(){
-//
-//
-//        return UserType::find(2)->users;
-//
-//
-//
-//
-//    }
+    public function index(){
+
+//        dd( DB::table('lead_share')
+//            ->select('*')
+//            ->whereIn('lead_share_id',(function ($query) {
+//                $query->from('share_access')
+//                    ->select('lead_share_id')
+//                    ->where('lead_share_id','=',1);
+//            }
+//                ->get());
+
+
+
+
+//      dd( DB::table('usertypes')
+//            ->select('*')
+//            ->whereIN('usertypes.users_type_id',function($query) {
+//                $query->from('users')
+//                    ->select('user_id')
+//                    ->where('user_id','=',2);
+//            })
+//            ->get());
+
+
+
+
+    }
 
 
 
@@ -56,6 +75,7 @@ class RegisterController extends Controller
         return redirect('/login');
     }
     public function loginuser(Request $request){
+        $leads=Lead::all();
 
      $users=User::where('email','=',$request->email)->first();
 
@@ -63,7 +83,9 @@ class RegisterController extends Controller
             if ($users->email_verified_at!=null) {
                 if (Hash::check($request->password, $users->password)) {
                     $request->session()->put('loginid', $users->id);
-                    return redirect('/dashboard');
+                    return view('/dashboard',[
+                        'leads'=>$leads
+                    ]);
                 } else {
                     return redirect('/login')->with('passfail','Incorrect Password');
                 }
@@ -93,20 +115,6 @@ class RegisterController extends Controller
         }
     }
 
-    /////// new Password ///////////////
-//    public function new_password(Request $request)
-//    {
-//        $users = array();
-//        if (Session::has('loginemail')) {
-//            $users = User::where('email', '=', Session::get('loginemail'))->first();
-//            if ($users) {
-//                dd($users);
-//            } else {
-//                return redirect('/forget');
-//            }
-//        }
-//    }
-    ////////////////
 
     public function profile(){
         $users=array();

@@ -45,6 +45,14 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
 
+            @if(session('invalidemail'))
+                <div class="alert alert-success">
+                    {{session('invalidemail')}}
+                    <a href="/recover"><i class="fa-sharp fa-solid fa-circle-xmark float-md-right mt-0"></i></a>
+
+                </div>
+            @endif
+
             <form action="{{route('password.update')}}" method="post" id="recover_form">
 
                 @csrf

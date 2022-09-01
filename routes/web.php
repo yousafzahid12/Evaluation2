@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LeadsController;
 use App\Models\User;
 use \Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
@@ -64,9 +65,6 @@ Route::post('/forgot-password', function (Request $request) {
     }
 })->middleware('guest')->name('password.email');
 
-
-
-
 Route::get('/reset-password/{token}', function ($token) {
     return view('auth.recover-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
@@ -74,8 +72,9 @@ Route::get('/reset-password/{token}', function ($token) {
 
 
 
-
 Route::post('/reset-password', function (Request $request) {
+    $users=User::where('email','=',$request->email)->first();
+    if ($users) {
     $request->validate([
         'token' => 'required',
         'email' => 'required|email',
@@ -95,7 +94,11 @@ Route::post('/reset-password', function (Request $request) {
 
         }
     );
-    return redirect('/login')->with('changed','you have registered');
+        return redirect('/login')->with('changed','you have registered');
+    }
+    else{
+        return redirect('reset-password/{token}')->with('invalidemail','UserName Doesnot Exist');
+    }
 
 
 
@@ -111,7 +114,7 @@ Route::post('/reset-password', function (Request $request) {
 
 
 Route::get('/recover', function () {
-    return view('recover-password');
+    return view('auth.recover-password');
 });
 
 
