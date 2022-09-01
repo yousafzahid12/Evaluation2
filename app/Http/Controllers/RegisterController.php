@@ -16,15 +16,15 @@ use Illuminate\Support\Facades\Password;
 class RegisterController extends Controller
 {
 
-    public function index(){
-
-
-        return UserType::find(2)->users;
-
-
-
-
-    }
+//    public function index(){
+//
+//
+//        return UserType::find(2)->users;
+//
+//
+//
+//
+//    }
 
 
 
@@ -63,18 +63,18 @@ class RegisterController extends Controller
             if ($users->email_verified_at!=null) {
                 if (Hash::check($request->password, $users->password)) {
                     $request->session()->put('loginid', $users->id);
-                    return redirect('/dashboard')->with('success', 'Login Successfully!');
+                    return redirect('/dashboard');
                 } else {
-                    echo "Incorrect Password";
+                    return redirect('/login')->with('passfail','Incorrect Password');
                 }
             }
             else
             {
-               echo "User Not Verified";
+                return redirect('/login')->with('verifyfail','User Not Verified');
             }
         }
         else{
-            echo "Incorrect Email";
+            return redirect('/login')->with('mailfail','Incorrect Email');
         }
 
 

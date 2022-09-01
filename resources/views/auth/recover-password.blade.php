@@ -17,7 +17,24 @@
     <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
+
+<style type="text/css">
+    body{
+        background: #ddd;
+    }
+    .container{
+        background: #fff;
+        margin-top:100px;
+    }
+    .error{
+        color:red;
+    }
+</style>
+
+
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
@@ -28,7 +45,7 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
 
-            <form action="{{route('password.update')}}" method="post">
+            <form action="{{route('password.update')}}" method="post" id="recover_form">
 
                 @csrf
                 @if(session('email'))
@@ -41,19 +58,22 @@
                     <input type="email" class="form-control" placeholder="Email" name="email" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
+                            <span class="fas fa-envelope"></span>
                         </div>
                     </div>
                 </div>
+                <div id="email-error" class="error invalid-feedback"></div>
 
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" name="password" >
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
                 </div>
+                <div id="password-error" class="error invalid-feedback"></div>
+
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation">
                     <div class="input-group-append">
@@ -62,6 +82,8 @@
                         </div>
                     </div>
                 </div>
+                <div id="password_confirmation-error" class="error invalid-feedback"></div>
+
                 <div class="row">
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary btn-block">Change password</button>
@@ -85,6 +107,45 @@
 <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/assets/dist/js/adminlte.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#recover_form').validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true,
+                    digits: true,
+                    minlength:8,
+
+                },
+                password_confirmation: {
+                    required: true,
+                    digits: true,
+                   equalTo: '[name="password"]',
+                    minlength:8,
+
+                },
+            },
+            errorElement: 'div',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.recover_form').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

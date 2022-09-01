@@ -14,13 +14,30 @@
     <!-- Theme style -->
     <link rel="stylesheet" href=" /assets/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="/assets/dist/css/screen.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/eaaf251e65.js" crossorigin="anonymous"></script>
 
 
 
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-
+<style type="text/css">
+    body{
+        background: #ddd;
+    }
+    .container{
+        background: #fff;
+        margin-top:100px;
+    }
+    .error{
+        color:red;
+    }
+    .invalid-feedback{
+        background-image: none;
+    }
+</style>
 <body class="login-page" style="min-height: 291.969px;">
 <div class="login-box">
     <div class="login-logo">
@@ -32,41 +49,56 @@
             @if(session('success'))
                 <div class="alert alert-success">
                     {{session('success')}}
+                    <a href="/login"><i class="fa-sharp fa-solid fa-circle-xmark float-md-right"></i></a>
                 </div>
+            @elseif(session('mailfail'))
+                <div class="alert alert-success">
+                    {{session('mailfail')}}
+                   <a href="/login"><i class="fa-sharp fa-solid fa-circle-xmark float-md-right"></i></a>
+                </div>
+            @elseif(session('verifyfail'))
+                <div class="alert alert-success">
+                    {{session('verifyfail')}}
+                    <a href="/login"><i class="fa-sharp fa-solid fa-circle-xmark float-md-right"></i></a>
+                </div>
+            @elseif(session('passfail'))
+                <div class="alert alert-success">
+                    {{session('passfail')}}
+                    <a href="/login"><i class="fa-sharp fa-solid fa-circle-xmark float-md-right"></i></a>
+                </div>
+
             @endif
 
-            <form action="/login" method="post" id="basic-form" class="basic-form" >
+
+            <form action="/login" method="post" id="login-form" class="login-form" >
                 @csrf
 
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
 
-
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" minlength="3" placeholder="Email" name="email" aria-invalid="true" required="">
+                    <input type="email" class="form-control"  placeholder="Email" name="email"  >
 
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
-                    <div class="valid-feedback">Valid.</div>
+                    <div id="email-error" class="error invalid-feedback"></div>
                     <div class="invalid-feedback">Please fill out this field.</div>
 
                 </div>
 
-
-
                 <div class="input-group mb-3">
 
-                    <input type="password" class="form-control" minlength="6" placeholder="Password" name="password" required="">
+                    <input type="password" class="form-control"  placeholder="Password" name="password" >
 
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
-                    <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">Please fill out this field.</div>
+                    <div id="password-error" class="error invalid-feedback"></div>
 
                 </div>
 
@@ -111,31 +143,38 @@
 <script src="/assets/dist/js/adminlte.min.js"></script>
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="/assets/dist/js/jquery.validate.js"></script>
-
-
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
 <script>
+    $(document).ready(function () {
+        $('#login-form').validate({
+            rules: {
 
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Get the forms we want to add validation styles to
-            var forms = document.getElementsByClassName('basic-form');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
+                email: {
+                    required: true,
+                    email: true,
+                },
+                password: {
+                    required: true,
+                    digits: true,
+                    minlength:8
 
+                },
+            },
+            errorElement: 'div',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+            },
+            highlight: function (element, errorClass, validClass) {
+             $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
 </script>
 
 
-
-</body></html>
+</body>
+</html>

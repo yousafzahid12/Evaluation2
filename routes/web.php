@@ -48,14 +48,20 @@ Route::get('/forget-password', function () {
 
 
 Route::post('/forgot-password', function (Request $request) {
-    $request->validate(['email' => 'required|email']);
-    $status = Password::sendResetLink(
-        $request->only('email')
-    );
+    $users=User::where('email','=',$request->email)->first();
+    if ($users) {
+        $request->validate(['email' => 'required|email']);
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
 
-    return $status === Password::RESET_LINK_SENT
-        ? back()->with(['status' => __($status)])
-        : back()->withErrors(['email' => __($status)]);
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with(['status' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
+    }
+    else {
+        return redirect('/forget-password')->with('no_user','Email Doesnot Exists');
+    }
 })->middleware('guest')->name('password.email');
 
 
@@ -86,9 +92,10 @@ Route::post('/reset-password', function (Request $request) {
             $user->save();
 
             event(new PasswordReset($user));
+
         }
     );
-    return redirect('/login');
+    return redirect('/login')->with('changed','you have registered');
 
 
 
@@ -107,9 +114,6 @@ Route::get('/recover', function () {
     return view('recover-password');
 });
 
-Route::get('pass_change',function (){
-   return view('pass_changed');
-});
 
 
 /////////DashBoard///////////////

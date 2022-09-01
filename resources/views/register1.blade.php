@@ -58,7 +58,7 @@
                     <input type="number" name="user_id" class="form-control" placeholder="User_type">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
+                            <span class="fas fa-user"></span>
                         </div>
                     </div>
                 </div>

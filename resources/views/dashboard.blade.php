@@ -16,11 +16,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
 </head>
-@if(session('success'))
-    <div class="alert alert-success text-center ">
-        {{session('success')}}
-    </div>
-@endif
+
 
 <body class="sidebar-mini sidebar-open" style="height: auto;">
 <div class="wrapper">
