@@ -30,7 +30,7 @@ class RegisterController extends Controller
 
 
 
-
+//
 //      dd( DB::table('usertypes')
 //            ->select('*')
 //            ->whereIN('usertypes.users_type_id',function($query) {
@@ -118,9 +118,20 @@ class RegisterController extends Controller
 //        if (Session::has('loginid')){
 //            $users=User::where('id','=',Session::get('loginid'))->first();
 //        }
+
+
+       $name= DB::table('leads')
+           ->select('leads.id', 'leads.name', 'lead_type.name as name1', 'users.name as user_name', 'leads.created_at', 'lead_share.shared_by as share1', 'lead_share.shared_with as recieve')
+           ->join('lead_type','lead_type.id','=','leads.lead_type')
+           ->join('users','leads.created_by','=','users.id')
+           ->leftJoin('lead_share','lead_share.lead_id','=','leads.id')
+           ->orderBy('leads.id','asc')
+           ->get();
+       $name=$name->toArray();
+
         $leads=Lead::all();
         return view('dashboard',[
-            'leads'=>$leads
+            'leads'=>$name,
         ]);
     }
 

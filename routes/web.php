@@ -24,6 +24,8 @@ use Illuminate\Auth\Events\PasswordReset;
 |
 */
 
+
+
 Route::get('/login', function () {
     return view('auth.login');
 });
@@ -131,3 +133,7 @@ Route::get('/logout', [\App\Http\Controllers\RegisterController::class,'logout']
 
 Route::get('/relation',[RegisterController::class,'index']);
 ////////////////////////////
+Route::get('/home', function () {
+    return view('home');
+});
+

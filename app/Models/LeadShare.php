@@ -21,4 +21,8 @@ class LeadShare extends Model
     {
         return $this->hasMany(ShareAccess::class, 'lead_share_id');
     }
+    public function leads()
+    {
+        return $this->belongsTo(Lead::class,'id');
+    }
 }
