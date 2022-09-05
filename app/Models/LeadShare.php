@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Lead;
+use App\Models\User;
+use App\Models\ShareAccess;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class LeadShare extends Model
 {
@@ -12,10 +15,10 @@ class LeadShare extends Model
     protected $table='lead_share';
     protected $primaryKey='id';
     protected $fillable = [
-        'lead-id',
-        'shared-by',
-        'share-with',
-        'is-active',
+        'lead_id',
+        'shared_by',
+        'share_with',
+        'is_active',
     ];
     public function shareaccess()
     {
@@ -24,5 +27,9 @@ class LeadShare extends Model
     public function leads()
     {
         return $this->belongsTo(Lead::class,'id');
+    }
+    public function users()
+    {
+        return $this->belongsTo(User::class,'id');
     }
 }

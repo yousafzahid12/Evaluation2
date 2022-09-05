@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\LeadShareAccess;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Lead extends Model
 {
@@ -27,6 +28,10 @@ class Lead extends Model
     public function leadshare()
     {
         return $this->hasMany(LeadShare::class, 'lead_id');
+    }
+    public function leadshareaccess()
+    {
+        return $this->hasMany(LeadShareAccess::class, 'lead_id');
     }
 
 

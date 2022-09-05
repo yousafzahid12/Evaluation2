@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\UserType;
+use App\Models\LeadShare;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use App\Models\UserType;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail,\Illuminate\Contracts\Auth\CanResetPassword
 {
@@ -52,4 +53,8 @@ class User extends Authenticatable implements MustVerifyEmail,\Illuminate\Contra
     public function usertypes(){
         return $this->belongsTo(UserType::class,'users_type_id');
     }
+    public function lead_share(){
+        return $this->hasMany(LeadShare::class,'shared_by');
+    }
+
 }
