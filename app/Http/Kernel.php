@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\LoginAuth;
+use App\Http\Middleware\MemnerAuth;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -43,6 +45,9 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+        'auth'=>[
+            \App\Http\Middleware\Authenticate::class,
+        ],
     ];
 
     /**
@@ -53,8 +58,8 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
-        'authmember' => \App\Http\Middleware\MemnerAuth::class,
-        'auth' => \App\Http\Middleware\Authenticate::class,
+        'login_auth'=>LoginAuth::class,
+        'dashboard_auth'=> MemnerAuth::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

@@ -2,6 +2,16 @@
 
             <form action="/register" method="post">
                 @csrf
+
+            @if(\Illuminate\Support\Facades\Session::has('success'))
+                <div class="alert alert-success">{{Illuminate\Support\Facades\Session::get('success')}}</div>
+            @endif
+
+            @if(\Illuminate\Support\Facades\Session::has('fail1'))
+                <div class="alert alert-danger">{{Illuminate\Support\Facades\Session::get('fail')}}</div>
+            @endif
+
+
                 <div class="input-group mb-3">
                     <input type="text" name="name" class="form-control" placeholder="Full name">
                     <div class="input-group-append">

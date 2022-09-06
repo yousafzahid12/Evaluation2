@@ -4,9 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class MemnerAuth
+class LoginAuth
 {
     /**
      * Handle an incoming request.
@@ -17,9 +18,9 @@ class MemnerAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Session::has('email'))
+        if (Session::has('email'))
         {
-            return redirect('login')->with('fail','Login First');
+            return redirect('dashboard')->with('fail','Login First');
         }
         return $next($request);
     }

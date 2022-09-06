@@ -19,12 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition register-page">
-    @if(\Illuminate\Support\Facades\Session::has('success'))
-    <div class="alert alert-success">{{Illuminate\Support\Facades\Session::get('success')}}</div>
-@endif
-@if(\Illuminate\Support\Facades\Session::has('fail'))
-    <div class="alert alert-danger">{{Illuminate\Support\Facades\Session::get('fail')}}</div>
-@endif
+
 <div class="register-box">
     <div class="register-logo">
         <img src="https://nextbridge.com/wp-content/uploads/2022/02/Group-187.svg">

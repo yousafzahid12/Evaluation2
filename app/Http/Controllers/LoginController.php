@@ -20,11 +20,10 @@ public function login_page(){
     public function loginuser(Request $request){
 
      $users=User::where('email','=',$request->email)->first();
-
+     $request->session()->put('email', $request->email);
         if($users){
             if ($users->email_verified_at!=null) {
                 if (Hash::check($request->password, $users->password)) {
-                    $request->session()->put('loginid', $users->id);
                     return redirect('/dashboard');
                 } else {
                     return redirect('/login')->with('passfail','Incorrect Password');
