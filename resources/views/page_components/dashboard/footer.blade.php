@@ -12,7 +12,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
 
 <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="https://kit.fontawesome.com/eaaf251e65.js" crossorigin="anonymous"></script>
 
 <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

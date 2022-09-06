@@ -11,6 +11,7 @@ use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\UpdatePasswordController;
 
 
 /*
@@ -25,17 +26,22 @@ use App\Http\Controllers\ResetPasswordController;
 */
 
 
+Route::middleware(['login_auth'])->group(function () {
 
-Route::get('/',[RegisterController::class,'register_page'])->middleware('login_auth');
+
+Route::get('/',[RegisterController::class,'register_page']);
+
+Route::get('/login', [LoginController::class,'login_page']);
+
+
+});
+
 
 Route::post('/register',[RegisterController::class,'registration'] );
 
 ////////////////////////////////////////////////////////////////
 
-Route::get('/login', [LoginController::class,'login_page'])->middleware('login_auth');
 Route::post('/login',[LoginController::class,'loginuser']);
-
-
 
 
 ////////////////////////////////////////////////////////////////
@@ -61,3 +67,9 @@ Route::middleware(['guest'])->group(function () {
 /////Logout//////
 Route::get('/logout', [\App\Http\Controllers\DashBoardController::class,'logout']);
 
+////////////Update Password////////////////
+
+Route::get('/update-password',[UpdatePasswordController::class,'updatepassword']);
+
+
+Route::post('/updatepassword',[UpdatePasswordController::class,'updated']);

@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
+        <script src="https://kit.fontawesome.com/eaaf251e65.js" crossorigin="anonymous"></script>
         </head>
 <body class="sidebar-mini sidebar-open" style="height: auto;">
 
@@ -32,6 +33,12 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto ">
 
+            <li class="nav-item">
+                <a class="nav-link" href="/update-password" role="button">
+                    <i class="fa-solid fa-user">
+                    </i>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout" role="button">
                     <i class="fa-solid fa-right-from-bracket mt-1 "></i>
