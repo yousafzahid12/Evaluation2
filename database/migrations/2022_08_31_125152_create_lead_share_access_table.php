@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('lead_id');
             $table->foreign('lead_id')->references('id')->on('leads');
-            $table->unsignedBigInteger('share_access_id');
-            $table->foreign('share_access_id')->references('id')->on('share_access');
+            $table->unsignedBigInteger('access_id');
+            $table->foreign('access_id')->references('id')->on('share_access');
             $table->timestamps();
         });
     }

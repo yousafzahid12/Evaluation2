@@ -19,9 +19,10 @@ return new class extends Migration
                 $table->string('name');
                 $table->string('email')->unique();
                 $table->timestamp('email_verified_at')->nullable();
-                $table->unsignedBigInteger('user_id');
-                $table->foreign('user_id')->references('users_type_id')->on('usertypes');
+                $table->unsignedBigInteger('user_type_id');
+                $table->foreign('user_type_id')->references('users_id')->on('usertypes');
                 $table->string('password');
+                $table->string('file',300)->nullable;
                 $table->rememberToken();
                 $table->timestamps();
         });

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('usertypes', function (Blueprint $table) {
-            $table->id('users_type_id');
+            $table->id('users_id');
             $table->string('type');
             $table->timestamps();
         });

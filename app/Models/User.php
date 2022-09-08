@@ -28,6 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail,\Illuminate\Contra
         'email',
         'password',
         'user_id',
+        'file'
     ];
 
     /**

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\LoginController;
 use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Controllers\AddUserController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\ResetPasswordController;
@@ -25,11 +27,10 @@ use App\Http\Controllers\UpdatePasswordController;
 |
 */
 
+Route::get('/',[RegisterController::class,'register_page']);
 
 Route::middleware(['login_auth'])->group(function () {
 
-
-Route::get('/',[RegisterController::class,'register_page']);
 
 Route::get('/login', [LoginController::class,'login_page']);
 
@@ -69,7 +70,20 @@ Route::get('/logout', [\App\Http\Controllers\DashBoardController::class,'logout'
 
 ////////////Update Password////////////////
 
-Route::get('/update-password',[UpdatePasswordController::class,'updatepassword']);
+Route::get('/profile',[ProfileController::class,'profile']);
 
 
-Route::post('/updatepassword',[UpdatePasswordController::class,'updated']);
+Route::post('/updatepassword',[ProfileController::class,'updated']);
+
+
+
+//////////////////////////Update Profile//////////////////
+
+Route::post('/updateprofile',[ProfileController::class,'profileupdated']);
+
+////////////////////////////////////////////
+
+Route::get('/add_user',[AddUserController::class,'adduser']);
+
+
+Route::post('/adduser',[AddUserController::class,'usercreated']);

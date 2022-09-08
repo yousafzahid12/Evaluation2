@@ -24,7 +24,7 @@ public function login_page(){
         if($users){
             if ($users->email_verified_at!=null) {
                 if (Hash::check($request->password, $users->password)) {
-                    $request->session()->put('email', $request->email);
+                    $request->session()->put('email', $users->email);
                     return redirect('/dashboard');
                 } else {
                     return redirect('/login')->with('passfail','Incorrect Password');

@@ -22,8 +22,8 @@ class UserSeeder extends Seeder
         DB::table('users')->delete();
 
         $users = [
-            [ 'name' => 'Imran Yousaf', 'email' => 'imran.yousaf@nxb.com.pk', 'password' => bcrypt('A12345678@@'),'user_id'=>1],
-            [ 'name' => 'yousaf', 'email' => 'yousaf.zahid@nxb.com.pk','user_id'=>2, 'password' => bcrypt('yousaf@30')],
+            [ 'name' => 'Imran Yousaf', 'email' => 'imran.yousaf@nxb.com.pk', 'password' => bcrypt('A12345678@@'),'user_type_id'=>1,'file'=>'Hii'],
+            [ 'name' => 'yousaf', 'email' => 'yousaf.zahid@nxb.com.pk','user_type_id'=>2, 'password' => bcrypt('yousaf@30')],
         ];
 
         foreach ($users as $user)

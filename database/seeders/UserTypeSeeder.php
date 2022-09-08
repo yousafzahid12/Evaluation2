@@ -22,8 +22,8 @@ class UserTypeSeeder extends Seeder
         DB::table('usertypes')->delete();
 
         $usertypes = [
-            [ 'users_type_id'=>1,'type'=>'admin'],
-            [ 'users_type_id'=>2,'type'=>'user']
+            [ 'users_id'=>1,'type'=>'admin'],
+            [ 'users_id'=>2,'type'=>'user']
         ];
         foreach ($usertypes as $usertype)
             UserType::create($usertype);

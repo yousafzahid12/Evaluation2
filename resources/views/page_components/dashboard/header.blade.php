@@ -20,32 +20,7 @@
         </head>
 <body class="sidebar-mini sidebar-open" style="height: auto;">
 
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light ml-0">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-
-            <li class="nav-item d-none d-sm-inline-block">
-                <img class="hfe-site-logo-img elementor-animation- " src="https://nextbridge.com/wp-content/uploads/2022/02/Group-187.svg" alt="">
-            </li>
-
-        </ul>
-
-        <!-- Right navbar links -->
-        <ul class="navbar-nav ml-auto ">
-
-            <li class="nav-item">
-                <a class="nav-link" href="/update-password" role="button">
-                    <i class="fa-solid fa-user">
-                    </i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout" role="button">
-                    <i class="fa-solid fa-right-from-bracket mt-1 "></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
+   @include('page_components.dashboard.navbar')
 
     <div class="content-wrapper ml-0" style="min-height: 800px;">
         <!-- Content Header (Page header) -->
@@ -57,8 +32,9 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">DataTables</li>
+                            <a href="/add_user">
+                            <button type="submit" class="btn btn-success pr-4 pl-4 text-bold">Add Users</button>
+                            </a>
                         </ol>
                     </div>
                 </div>

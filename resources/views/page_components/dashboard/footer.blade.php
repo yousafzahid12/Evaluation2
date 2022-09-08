@@ -1,11 +1,6 @@
-<footer class="main-footer ml-0">
-    <div class="float-right d-none d-sm-block">
-        <b>Version</b> 1.0
-    </div>
-    <strong>Copyright © 2022-2027 <a href="https://adminlte.io">NextBridge</a>.</strong> All rights reserved.
-</footer>
 
 </div>
+@include('page_components.dashboard.downbar')
 
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -47,6 +42,6 @@ $('#leaddocs').DataTable({
 });
 
 </script>
-
+</div>
 </body>
 </html>

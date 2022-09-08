@@ -45,6 +45,7 @@ public function register_page(){
         $users->user_id=$request->user_id;
         $users->password=Hash::make($request->password);
         $res= $users->save();
+
         if (($res))
         {
             return back()->with('success','you have registered');
