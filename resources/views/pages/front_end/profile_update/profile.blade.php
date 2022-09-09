@@ -1,6 +1,6 @@
 @include('page_components.profile.header')
 
-                <form action="updatepassword" method="post" id="update-form" >
+                <form action="updatepassword" method="post" id="updatepassword-form" class="updatepassword-form" >
                     @csrf
 
                     @if(session('updated'))
@@ -20,31 +20,25 @@
 
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
-                     <input type="password" class="form-control" placeholder="Current Password" value="" id="password" name="password">
+                     <input type="password" class="form-control" placeholder="Current Password"  id="password" name="password">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputFile">New Password</label>
-                      <div class="input-group">
                         <div class="custom-file">
                           <input type="password" class="form-control" placeholder=" New Password" id="newpassword" name="newpassword" >
                         </div>
-                      </div>
-                    </div>
+                    </div><br>
+
 
                     <div class="form-group">
                         <label for="exampleInputFile">Confirm Password</label>
-                        <div class="input-group">
+
                           <div class="custom-file">
                             <input type="password" class="form-control" placeholder="ConfirmNewPassword" name="confirmnewpassword" >
-                          </div>
                         </div>
                       </div>
 
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
                   </div>
                   <!-- /.card-body -->
 

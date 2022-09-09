@@ -12,8 +12,21 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   </head>
+<style>
+.styling{
+background-color: red;
+}
+</style>
+
   <body class="sidebar-mini" style="height: auto;">
   <div class="wrapper" style="">
     <!-- Navbar -->

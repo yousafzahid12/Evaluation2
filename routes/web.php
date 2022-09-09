@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\NewUserProfileController;
 use App\Http\Controllers\UpdatePasswordController;
 
 
@@ -87,3 +88,10 @@ Route::get('/add_user',[AddUserController::class,'adduser']);
 
 
 Route::post('/adduser',[AddUserController::class,'usercreated']);
+
+//////////////////////////////////////
+
+Route::get('/new_users_profile',[NewUserProfileController::class,'newuserprofile']);
+
+Route::post('/new_user_update',[NewUserProfileController::class,'new_user_profile_update']);
+

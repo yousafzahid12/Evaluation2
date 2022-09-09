@@ -32,7 +32,7 @@
                 <span class="text-danger">@error('email'){{$message}} @enderror</span>
 
                 <div class="input-group mb-3">
-                    <input type="number" name="user_id" class="form-control" placeholder="User_type">
+                    <input type="number" name="user_type_id" class="form-control" placeholder="User_type">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -69,5 +69,9 @@
                     <!-- /.col -->
                 </div>
             </form>
-
+            <a href="/login">
+            <div class="col-4">
+                <button type="submit" class="btn btn-primary btn-block">Add User</button>
+            </div>
+        </a>
 @include('page_components.register.footer')

@@ -24,12 +24,49 @@
 <script src="assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="assets/dist/js/demo.js"></script>
-<script type="text/javascript">
-$(document).ready(function () {
-bsCustomFileInput.init();
-});
-</script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script class="styling">
+    $(document).ready(function () {
 
+    $('#updatepassword-form').validate({
+
+    rules: {
+        password: {
+            required: true,
+            minlength:8
+        },
+        newpassword: {
+        required: true,
+        minlength:8,
+
+    },
+    confirmnewpassword: {
+        required: true,
+       equalTo: '[name="newpassword"]',
+        minlength:8,
+
+    },
+    },
+    errorElement: 'div',
+    });
+    });
+    </script>
+<script class="styling">
+    $(document).ready(function () {
+
+    $('#update-profile').validate({
+
+    rules: {
+    name: {
+        lettersonly: true
+
+    },
+    },
+    errorElement: 'div',
+    });
+    });
+    </script>
 
 
 </div></body></html>

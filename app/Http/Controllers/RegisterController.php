@@ -34,15 +34,16 @@ public function register_page(){
         $request->validate([
             'name'=>'required',
             'email'=>'required',
-             'user_id'=>'required',
-//            'email_verified_at'=>'time()',
-            'password'=>'min:6|required'
+             'user_type_id'=>'required',
+            'password'=>'min:6|required',
+            // 'file'=>'required'
+
         ]);
         $users= new User();
         $users->id=$request->id;
         $users->name=$request->name;
         $users->email=$request->email;
-        $users->user_id=$request->user_id;
+        $users->user_type_id=$request->user_type_id;
         $users->password=Hash::make($request->password);
         $res= $users->save();
 
