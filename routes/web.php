@@ -91,7 +91,9 @@ Route::post('/adduser',[AddUserController::class,'usercreated']);
 
 //////////////////////////////////////
 
-Route::get('/new_users_profile',[NewUserProfileController::class,'newuserprofile']);
+Route::get('/new_users_profile/{jassim}',[NewUserProfileController::class,'newuserprofile']);
 
 Route::post('/new_user_update',[NewUserProfileController::class,'new_user_profile_update']);
 
+/////////////////////////////////////////
+Route::get('/search',[DashBoardController::class,'search']);

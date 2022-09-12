@@ -29,14 +29,13 @@ return \view('pages.front_end.add_new_users.new-users');
         $users->user_type_id=$request->user_type_id;
         $users->password=Hash::make($request->password);
         $res= $users->save();
-        $request->session()->put('email', $users->email);
         $data = [
             "subject"=>"Hii this is yousaf zahid",
             "body"=>"$users->name, mail is to inform you that you are successfully added!,<br>,$users->email,'$users->password"
             ];
           try
           {
-            Mail::to($users->email)->send(new MailNotify($data));
+            Mail::to($users->email)->send(new MailNotify($data,$request->email));
             return \redirect('/add_user')->with('mail','User has been notified via email');
           }
           catch(Exception $e)

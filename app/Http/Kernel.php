@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\LoginAuth;
 use App\Http\Middleware\MemnerAuth;
+use App\Http\Middleware\dashboardauth;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel

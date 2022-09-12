@@ -69,9 +69,8 @@
                     <!-- /.col -->
                 </div>
             </form>
-            <a href="/login">
-            <div class="col-4">
-                <button type="submit" class="btn btn-primary btn-block">Add User</button>
+            <div class="col-8 mt-2">
+                <a href="/login" class="text-sm ">already have a membership?</a>
             </div>
-        </a>
+
 @include('page_components.register.footer')

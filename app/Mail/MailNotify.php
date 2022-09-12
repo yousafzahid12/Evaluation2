@@ -2,10 +2,12 @@
 
 namespace App\Mail;
 
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class MailNotify extends Mailable
 {
@@ -27,9 +29,10 @@ class MailNotify extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(Request $request)
     {
+        $users=$users=User::where('email','=',$request->email)->first();
         return $this->from('books.softwares@gmail.com','Yousaf Zahid')
-        ->subject($this->data['subject'])->view('pages.front_end.registration.email')->with('data',$this->data);
+        ->subject($this->data['subject'])->view('pages.front_end.registration.email',['users'=>$users])->with('data',$this->data);
     }
 }

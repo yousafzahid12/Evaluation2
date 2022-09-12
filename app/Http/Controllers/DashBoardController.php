@@ -3,22 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lead;
+use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\ServiceProvider;
+use Session;
 
 class DashBoardController extends Controller
 {
     public function dashboard(){
-        //        $users=array();
-        //        if (Session::has('loginid')){
-        //            $users=User::where('id','=',Session::get('loginid'))->first();
-        //        }
+        //  $leads='1';
+
+      $specific= DB::table('users')
+->select('shared_by', 'shared_with')
+->addSelect(DB::raw('(SELECT email FROM users WHERE users.id = lead_share.shared_with) AS shared_with'))
+->addSelect(DB::raw('(SELECT email FROM users WHERE users.id = lead_share.shared_by) AS shared_by'))
+->join('lead_share','lead_share.shared_by','=','users.id')
+->get();
 
 
-               $leads= DB::table('leads')
+// foreach($specific as $spe)
+// {
+//     if(session('email')==$spe->shared_by ||session('email')==$spe->shared_with)
+//     {
+               $leads=DB::table('leads')
                    ->select( 'leads.id','leads.name', 'lead_type.name as name1','users.name as user_name', 'leads.created_at')
                    ->addSelect(DB::raw('(SELECT name FROM users WHERE users.id = lead_share.shared_by) AS shared_by'))->groupBy('leads.id')
                    ->addSelect(DB::raw('(SELECT name FROM users WHERE users.id = lead_share.shared_with) AS shared_with'))->groupBy('leads.id')
@@ -28,12 +39,15 @@ class DashBoardController extends Controller
                    ->leftJoin('lead_share','lead_share.lead_id','=','leads.id')
                    ->leftJoin('lead_share_access','leads.id','=','lead_share_access.lead_id')
                    ->orderBy('leads.id')
-                   ->get();
-               $leads=$leads->toArray();
-                return view('pages/front_end/dashboard/dashboard',[
-                    'leads'=>$leads,
-                ]);
-            }
+                   ->paginate(5);
+
+
+        // }
+
+        return view('pages/front_end/dashboard/dashboard')->with('lead',$leads);
+}
+
+
 
             public function logout(){
                 if (Session::has('email')){
@@ -41,6 +55,13 @@ class DashBoardController extends Controller
                     Session::flush();
                 }
            return redirect('/login')->with('success', 'Logout Successfully!');
+        }
+        public function search(){
+$search_text=$_GET['search'];
+$product=Lead::where('name','LIKE','%'.$search_text.'%')->get();
+return view('pages.front_end.dashboard.dashboard',[
+    'product'=>$product
+]);
         }
 
 

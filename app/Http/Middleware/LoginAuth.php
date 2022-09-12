@@ -20,8 +20,9 @@ class LoginAuth
     {
         if (Session::has('email'))
         {
-            return redirect('dashboard')->with('fail','Login First');
+            return redirect('dashboard');
         }
+
         return $next($request);
     }
 }

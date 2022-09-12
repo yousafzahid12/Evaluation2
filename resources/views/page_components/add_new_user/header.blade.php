@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
+    <script src="https://kit.fontawesome.com/eaaf251e65.js" crossorigin="anonymous"></script>
     <!-- Google Font: Source Sans Pro -->
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -23,12 +24,6 @@
 
 
 </head>
-<body class="hold-transition register-page">
 
-<div class="register-box">
-    <div class="register-logo">
-        <img src="https://nextbridge.com/wp-content/uploads/2022/02/Group-187.svg">
-    </div>
-
-    <div class="card">
-        <div class="card-body register-card-body">
+<body class="">
+@include('page_components.dashboard.navbar')

@@ -1,6 +1,12 @@
 @include('page_components.dashboard.header')
+@foreach($product as $products)
+<tr>
 
-        <table id="leaddocs" class="table table-bordered table-striped">
+    <td>{{$products->id}}</td>
+    <td>{{$products->name}}</td>
+    @endforeach
+
+        <table class="table table-bordered table-striped">
             <thead>
             <tr>
 
@@ -16,8 +22,11 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($leads as $leads)
+
+
+            @foreach($lead as $leads)
             <tr>
+
                 <td>{{$leads->id}}</td>
                 <td>{{$leads->name}}</td>
                 <td>{{$leads->name1}}</td>
@@ -26,9 +35,9 @@
                 <td>{{$leads->shared_with}}</td>
                 <td>{{$leads->actions_granted}}</td>
                 <td>{{$leads->created_at}}</td>
-
             </tr>
             @endforeach
+
             </tbody>
                                 </table>
                             </div>
@@ -37,6 +46,11 @@
                 </div>
             </div>
         </section>
+
+          <span class="pagination justify-content-end mr-4"> {{ $lead->links() }}</span>
+
+
+
 
      @include('page_components.dashboard.footer');
 

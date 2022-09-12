@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class dashboardauth
 {
@@ -16,6 +18,12 @@ class dashboardauth
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if(Auth::guest())
+        {
+            return Redirect::guest('login');
+        }
+        else{
+
+        }
     }
 }
