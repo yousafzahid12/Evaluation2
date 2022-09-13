@@ -23,7 +23,7 @@
 
 
 
-    <a href= 'http://127.0.0.1:8000/new_users_profile/{{ $users->email }}'>
+    <a href= 'http://127.0.0.1:8001/new_users_profile/{{ $users->email }}'>
         <button type="submit" class="btn btn-primary btn-block">
              Verify Yourself
         </button>

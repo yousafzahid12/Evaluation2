@@ -17,6 +17,9 @@
         <!-- Theme style -->
         <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
         <script src="https://kit.fontawesome.com/eaaf251e65.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/eaaf251e65.js" crossorigin="anonymous"></script>
+
 
         </head>
 <body class="sidebar-mini sidebar-open" style="height: auto;">
@@ -49,8 +52,8 @@
                             <div class="card-header text-right">
                                 <h3 class="card-title">DataTable with minimal features &amp; hover style</h3>
                                 <div>
-                                    <form method="GET" action="/search">
-                                        @csrf
+                                    <form method="" >
+
                                     <label>Search:</label>
                                     <input type="text" name="search" >
                                     <button>Search</button>
