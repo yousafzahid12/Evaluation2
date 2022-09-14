@@ -17,6 +17,7 @@
                 <th>Shared_By</th>
                 <th>Recieved_By</th>
                 <th>Created_At</th>
+                <th>Granted</th>
                 <th>Actions</th>
 
 
@@ -35,18 +36,38 @@
                 <td>{{$leads->shared_by}}</td>
                 <td>{{$leads->shared_with}}</td>
                 <td>{{$leads->created_at}}</td>
+                <td>{{$leads->actions_granted}}</td>
                 <td>
-                  <a href="/search/{{ $leads->id  }}" >
-                        @if ($leads->actions_granted=='delete')
-                           <i class="fa-solid fa-trash-can"></i>
-                           @elseif ($leads->actions_granted=='update')
-                           <i class="fa-regular fa-pen-to-square"></i>
-                           @elseif ($leads->actions_granted=='read_only')
-                           <i class="fa-brands fa-readme"></i>
-                           @elseif ($leads->actions_granted=='share')
-                           <i class="fa-solid fa-share-nodes"></i>
-                           @endif
-                    </a>
+                  {{-- <a href="/search/{{ $leads->id  }}" > --}}
+                    <?php
+
+                     $access_list = getLeadAccess($leads->id);
+                     foreach($access_list as $lsit){
+                            if($lsit->action== 'read_only'){?>
+                            <i class="fa-brands fa-readme"></i>
+                            <?php }
+                             if($lsit->action  == 'update'){?>
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            <?php }
+                            if($lsit->action  == 'delete'){?>
+                                <a href="search/{{ $lsit->action }}" >
+                                <i class="fa-solid fa-trash-can"></i>
+                                </a>
+
+                                <?php }
+                                if($lsit->action  == 'can_share')
+                                {?>
+                                <a href="search/{{ $lsit->action }}">
+                                <i class="fa-solid fa-share-nodes"></i>
+                                </a>
+                            <?php }
+
+                     }
+                     ?>
+
+
+
+
                     </td>
             </tr>
 
@@ -63,25 +84,7 @@
             </div>
 
         </section>
-        <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true" value={{ $leads->id }}>
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-body">
-{{-- @foreach ($action as $actions)
-<p>{{ $actions->id }} </p>
-@endforeach --}}
 
-
-                </div>
-                <div class="modal-footer justify-content-between">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-              <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-          </div>
 
           <span class="pagination justify-content-end mr-4"> {{ $lead->links() }}</span>
 

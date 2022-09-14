@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('lead_type');
             $table->foreign('lead_type')->references('id')->on('lead_type');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users');
             $table->time('deleted_at');

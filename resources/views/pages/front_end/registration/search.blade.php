@@ -16,11 +16,55 @@
     <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  </head>
+    <style>
+        .dropbtn {
+border: 2px solid black;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
+
+        .dropdown {
+            border: 2px solid black;
+          position: relative;
+          display: inline-block;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #f1f1f1}
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+
+        }
+        </style>
+
+</head>
   <body >
 
-<div class="container bg-gray align-items-center" style="justify-content: center;">
+{{-- <div class="container bg-gray align-items-center" style="justify-content: center;">
                 @foreach ($action as $action)
+
                 @if($action->actions_granted=='read_only')
                 {
                 <div>
@@ -44,13 +88,74 @@
                 {{ $action->shared_with }}
             </div>
                 }
-              @elseif($action->actions_granted!='read_only')
+
+
+              @elseif($action->actions_granted=='delete')
               {
-                echo("no");
+                {{ "deleted Successfully" }}
+
               }
-              @endif
+
+
+              @elseif ($action->actions_granted=='update')
+              {
+<form>
+                    <div>
+                    <label>ID is:</label>
+                <input type="text" value="{{ $action->id }}" readonly>
+                </div>
+                <div>
+                    <label>Title is:</label>
+                    <input type="text" value="{{ $action->name }}">
+            </div>
+                <div>
+                    <label>Creator is:</label>
+                    <input type="text" value="{{ $action->name1 }}">
+            </div>
+                <div>
+                    <label>Shared_by is:</label>
+                    <input type="text" value="{{ $action->shared_by}}" >
+            </div>
+                <div>
+                    <label>Shared_with is:</label>
+                    <input type="text" value="{{ $action->shared_with}}" >
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+
+                }
+@endif
                 @endforeach
+</div> --}}
+
+<h2>Dropdown Menu</h2>
+<p>Move the mouse over the button to open the dropdown menu.</p>
+
+<div class="dropdown">
+  <input class="dropbtn" placeholder="enter">
+  <div class="dropdown-content">
+    @foreach ($actions as $action )
+    <a href="#">{{ $action->id }}</a>
+    @endforeach
+
+
+  </div>
 </div>
+
+
+
+
+
+
+
+<div>
+
+<div>
+
+
+
+
+
   <!-- jQuery -->
   <script src="/assets/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->

@@ -57,5 +57,8 @@ class User extends Authenticatable implements MustVerifyEmail,\Illuminate\Contra
     public function lead_share(){
         return $this->hasMany(LeadShare::class,'shared_by');
     }
+    public function leads(){
+        return $this->hasMany(Lead::class,'created_by');
+    }
 
 }

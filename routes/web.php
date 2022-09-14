@@ -96,4 +96,15 @@ Route::get('/new_users_profile/{jassim}',[NewUserProfileController::class,'newus
 Route::post('/new_user_update',[NewUserProfileController::class,'new_user_profile_update']);
 
 /////////////////////////////////////////
-Route::get('/search/{id}',[DashBoardController::class,'search']);
+Route::get('/search/{action}',[DashBoardController::class,'search']);
+
+//////////////////Helper////////////////////
+
+Route::get('/helper',[DashBoardController::class,'eloquentquery']);
+
+
+
+
+Route::get('/search', function () {
+return view('pages.front_end.registration.search');
+});

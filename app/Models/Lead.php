@@ -33,6 +33,9 @@ class Lead extends Model
     {
         return $this->hasMany(LeadShareAccess::class, 'lead_id');
     }
+    public function users(){
+        return $this->hasMany(User::class,'id');
+    }
 
 
 
